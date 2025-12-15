@@ -1,0 +1,32 @@
+void setup() {
+  Serial.begin(9600); // Initialize serial communication at 9600 baud
+}
+
+void loop() {
+  // Read analog values from sensors
+  int Im = analogRead(A0); // Motor current
+  int Vm = analogRead(A1); // Motor voltage
+  int Tm = analogRead(A2); // Motor temperature
+  int Ib = analogRead(A3); // Battery current
+  int Vb = analogRead(A4); // Battery voltage
+  int Tb = analogRead(A5); // Battery temperature
+
+  // Map to realistic ranges
+  float Im_mapped = Im / 1023.0 * (80.0 - 70.0) + 70.0;    // 2–6 A
+  float Vm_mapped = Vm / 1023.0 * (60.0 - 48.0) + 48.0; // 48–60 V
+  float Tm_mapped = Tm / 1023.0 * (55.0 - 45.0) + 45.0; // 35–55 °C
+  float Ib_mapped = Ib / 1023.0 * (60.0 - 50.0) + 50.0;    // 2–6 A
+  float Vb_mapped = Vb / 1023.0 * (60.0 - 48.0) + 48.0; // 48–60 V
+  float Tb_mapped = Tb / 1023.0 * (55.0 - 45.0) + 45.0; // 35–55 °C
+
+  // Create a comma-separated string (1 decimal place)
+  String data = String(Im_mapped, 1) + "," + String(Vm_mapped, 1) + "," + String(Tm_mapped, 1) + "," +
+                String(Ib_mapped, 1) + "," + String(Vb_mapped, 1) + "," + String(Tb_mapped, 1);
+
+  // Send with start and end markers
+  Serial.print("<");
+  Serial.print(data);
+  Serial.println(">");
+
+  delay(1000); // 1 second delay
+}
