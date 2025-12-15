@@ -87,7 +87,6 @@ HTML WEB PAGE
 
 
 
-
-<img width="711" height="769" alt="Screenshot 2025-12-15 122141" src="https://github.com/user-attachments/assets/96409db2-45a8-4e9d-9452-7c0cc11aa709" />
+<img width="1875" height="915" alt="image" src="https://github.com/user-attachments/assets/ee61258c-d0d9-494f-8dfd-5ac3a76d194c" />
 
 
