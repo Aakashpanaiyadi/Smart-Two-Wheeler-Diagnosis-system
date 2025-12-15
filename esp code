@@ -1,0 +1,83 @@
+#include <ESP8266WiFi.h>
+#include <FirebaseESP8266.h>  // Firebase ESP8266 library by Mobizt
+
+#define WIFI_SSID "Irony"
+#define WIFI_PASSWORD "redmi9prime"
+
+#define FIREBASE_HOST "esp8266-sensor-data-25b0f-default-rtdb.firebaseio.com"
+#define FIREBASE_AUTH "0dGqKEcNTuBu4okHjwfSD1tsz9i9oUedjjxY4ati"
+
+// Define Firebase objects
+FirebaseData fbdo;
+FirebaseAuth auth;
+FirebaseConfig config;
+
+void setup() {
+  Serial.begin(9600);  // Serial from Arduino Uno
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("Connecting to WiFi");
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("\nConnected to WiFi");
+
+  config.host = FIREBASE_HOST;
+  config.signer.tokens.legacy_token = FIREBASE_AUTH;
+
+  Firebase.begin(&config, &auth);
+  Firebase.reconnectWiFi(true);
+}
+
+void loop() {
+  if (Serial.available()) {
+    String sensorData = Serial.readStringUntil('>');
+    sensorData.trim();
+
+    if (sensorData.startsWith("<")) {
+      sensorData = sensorData.substring(1);  // Remove '<'
+    } else {
+      Serial.println("Missing start marker '<'. Skipping.");
+      return;
+    }
+
+    // Split the string by comma
+    int values[6];
+    int commaIndex = -1;
+    int lastIndex = 0;
+    int valueCount = 0;
+
+    for (int i = 0; i <= sensorData.length(); i++) {
+      if (sensorData.charAt(i) == ',' || i == sensorData.length()) {
+        String part = sensorData.substring(lastIndex, i);
+        values[valueCount++] = part.toFloat();
+        lastIndex = i + 1;
+        if (valueCount >= 6) break;
+      }
+    }
+
+    if (valueCount == 6) {
+      FirebaseJson json;
+      json.set("MotorPresentCurrent", values[0]);
+      json.set("MotorPresentVoltage", values[1]);
+      json.set("MotorPresentTemp", values[2]);
+      json.set("BatteryPresentCurrent", values[3]);
+      json.set("BatteryPresentVoltage", values[4]);
+      json.set("BatteryPresentTemp", values[5]);
+
+      if (Firebase.updateNode(fbdo, "/sensor", json)) {
+        Serial.println("Data uploaded to Firebase:");
+        Serial.println(sensorData);
+      } else {
+        Serial.print("Firebase upload error: ");
+        Serial.println(fbdo.errorReason());
+      }
+    } else {
+      Serial.println("Invalid data received: " + sensorData);
+    }
+  }
+
+  delay(500); // Delay for stability
+}
