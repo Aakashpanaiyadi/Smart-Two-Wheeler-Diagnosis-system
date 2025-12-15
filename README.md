@@ -75,9 +75,19 @@ Abnormal voltage or current readings
 
 
 HARDWARE 
+
+
+
+
 <img width="641" height="852" alt="image" src="https://github.com/user-attachments/assets/ed438ee7-bdfa-4c82-94e3-9802c8bcd930" />
 
+
+
 HTML WEB PAGE
+
+
+
+
 <img width="711" height="769" alt="Screenshot 2025-12-15 122141" src="https://github.com/user-attachments/assets/96409db2-45a8-4e9d-9452-7c0cc11aa709" />
 
 
