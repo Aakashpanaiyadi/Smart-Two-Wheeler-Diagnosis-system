@@ -1,5 +1,5 @@
 #include <ESP8266WiFi.h>
-#include <FirebaseESP8266.h>  // Firebase ESP8266 library by Mobizt
+#include <FirebaseESP8266.h>  // Firebase ESP8266 
 
 #define WIFI_SSID "Irony"
 #define WIFI_PASSWORD "redmi9prime"
