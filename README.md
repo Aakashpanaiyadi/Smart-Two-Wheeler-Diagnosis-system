@@ -9,7 +9,7 @@ It continuously monitors key EV parameters such as motor current, motor voltage,
 
 The system also provides predefined troubleshooting guidance for common EV faults such as battery not charging, motor not working and overheating ,helping users and technicians identify issues quickly.
 
-⚙️ System Architecture
+System Architecture
 
 Arduino Uno acts as the data acquisition unit.
 
@@ -19,7 +19,7 @@ Firebase Realtime Database is used for cloud data storage.
 
 HTML Web Dashboard displays live readings and troubleshooting steps.
 
-🔌 Hardware Description
+Hardware Description
 Arduino Side
 
 Potentiometers are used to simulate real EV sensors:
@@ -52,7 +52,7 @@ Uploads structured data to Firebase Realtime Database using JSON format.
 
 Maintains Wi-Fi reconnection and reliable cloud communication.
 
-☁️ Cloud & Web Interface
+Cloud & Web Interface
 
 Firebase Realtime Database stores live EV sensor data.
 
