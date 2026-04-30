@@ -1,13 +1,13 @@
 # Smart-Two-Wheeler-Diagnosis-system
 
 
-🚲 Smart Two-Wheeler EV Diagnosis System (IoT Based)
-📌 Project Overview
+ Smart Two-Wheeler EV Diagnosis System (IoT Based)
+ Project Overview
 
 This project is an IoT-based smart diagnosis system for a two-wheeler electric vehicle (EV).
 It continuously monitors key EV parameters such as motor current, motor voltage, motor temperature, battery current, battery voltage, and battery temperature, and displays the live data on a web dashboard using Firebase Realtime Database.
 
-The system also provides predefined troubleshooting guidance for common EV faults such as battery not charging, motor not working, overheating, and voltage abnormalities, helping users and technicians identify issues quickly.
+The system also provides predefined troubleshooting guidance for common EV faults such as battery not charging, motor not working and overheating ,helping users and technicians identify issues quickly.
 
 ⚙️ System Architecture
 
@@ -66,9 +66,8 @@ Battery not charging
 
 Motor not running
 
-Over-temperature conditions
+Battery overheating 
 
-Abnormal voltage or current readings
 
 
 
