@@ -1,15 +1,15 @@
 void setup() {
-  Serial.begin(9600); // serial communication at 9600 baud
+  Serial.begin(9600);
 }
 
 void loop() {
   // Read analog values from potentiometer
-  int Im = analogRead(A0); // Motor current
-  int Vm = analogRead(A1); // Motor voltage
-  int Tm = analogRead(A2); // Motor temperature
-  int Ib = analogRead(A3); // Battery current
-  int Vb = analogRead(A4); // Battery voltage
-  int Tb = analogRead(A5); // Battery temperature
+  int Im = analogRead(A0); 
+  int Vm = analogRead(A1); 
+  int Tm = analogRead(A2); 
+  int Ib = analogRead(A3); 
+  int Vb = analogRead(A4); 
+  int Tb = analogRead(A5); 
 
   // Map to ev parameters
   float Im_mapped = Im / 1023.0 * (80.0 - 60.0) + 60.0;  //60–80 A
