@@ -1,4 +1,4 @@
-# Smart-Two-Wheeler-Diagnosis-system
+# IoT-Based EV Diagnosis System using Arduino,ESP8266 & Firebase
 
 
  Smart Two-Wheeler EV Diagnosis System (IoT Based)
